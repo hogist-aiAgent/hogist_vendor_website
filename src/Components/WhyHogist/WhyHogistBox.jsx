@@ -1,40 +1,52 @@
-import {Box,Typography,Grid} from "@mui/material"
+import { Box, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
-const WhyHogistBox=()=>{
-    return(
-       <Box
-  sx={{
-    width: "100%",
-    maxWidth: 400,
-    border: "1px solid rgb(240, 226, 222)",
-    borderRadius: "14px",
-    p: "22px",
-    boxSizing: "border-box",
-  }}
->
-    <Typography sx={{
-  fontSize: "13px",
-  fontWeight: 700,
-  color: "rgb(198, 8, 0)",
-}}>
-CERTIFIED
+const MotionBox = motion.create ? motion.create(Box) : motion(Box);
 
-    </Typography>
-    <Typography sx={{
-  fontSize: "15px",
-  fontWeight: 400,
-  lineHeight: 1.6,
-  color: "rgb(87, 80, 73)",
-}}>
-    ISO 9001:2015 & ISO 22000:2018 certified company, with 200+ partner kitchens.
+const WhyHogistBox = () => {
+  return (
+    <MotionBox
+      whileHover={{
+        // y: -6,
+        borderColor: "#c60800",
+        boxShadow: "0 14px 30px rgba(198, 8, 0, .12)",
+        // transition: { duration: 0.3, ease: "easeOut" },
+      }}
+      sx={{
+        width: "100%",
+        border: "1px solid #f0e2de",
+        borderRadius: "16px",
+        p: 3.25,
+        boxSizing: "border-box",
+        boxShadow: "0 0 0 rgba(0,0,0,0)",
+        cursor: "default",
+        willChange: "transform",
+      }}
+    >
+      <Typography
+        sx={{
+          fontSize: "10px",
+          fontWeight: 700,
+          letterSpacing: "0.04em",
+          color: "#c60800",
+        }}
+      >
+        CERTIFIED
+      </Typography>
+      <Typography
+        sx={{
+          mt: 1,
+          fontSize: "12px",
+          fontWeight: 400,
+          lineHeight: 1.7,
+          color: "#575049",
+        }}
+      >
+        ISO 9001:2015 & ISO 22000:2018 certified company, with 200+ partner
+        kitchens.
+      </Typography>
+    </MotionBox>
+  );
+};
 
-
-
-    </Typography>
-
-</Box>
-
-
-    )
-}
-export default WhyHogistBox
+export default WhyHogistBox;

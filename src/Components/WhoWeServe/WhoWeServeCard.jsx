@@ -1,12 +1,14 @@
-import { Box, Typography,Grid} from "@mui/material";
-import cardimg from "/src/assets/images/DAILY EMPLOYEE MEALS .jpg";
- 
+import { Box, Typography } from "@mui/material";
+import { motion } from "framer-motion";
+import cardimg from "../../assets/images/DAILY EMPLOYEE MEALS .jpg";
+
+const MotionBox = motion.create ? motion.create(Box) : motion(Box);
+
 const corporateServices = [
   {
     id: 1,
     title: "Corporate Offices",
-    description:
-      "Daily cafeteria service for corporate floors and head offices.",
+    description: "Daily cafeteria service for corporate floors and head offices.",
   },
   {
     id: 2,
@@ -17,8 +19,7 @@ const corporateServices = [
   {
     id: 3,
     title: "Manufacturing Companies",
-    description:
-      "High-volume, multi-shift meal programs for factory workforces.",
+    description: "High-volume, multi-shift meal programs for factory workforces.",
   },
   {
     id: 4,
@@ -33,70 +34,100 @@ const corporateServices = [
       "Peak-hour planning and scale for sites feeding hundreds to thousands daily.",
   },
 ];
- 
+
+const LAST_ID = corporateServices.length;
+
+const grid = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+};
+
+const fromBottom = {
+  hidden: { opacity: 0, y: 60 },
+  show: { opacity: 1, y: 0 },
+};
+
 const WhoWeServeCard = () => {
   return (
-    <Box
+    <MotionBox
+      variants={grid}
       sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 2,
-        height:"100%",
- 
+        display: "grid",
+        gridTemplateColumns: {
+          xs: "1fr",
+          sm: "repeat(2, 1fr)",
+          md: "repeat(3, 1fr)",
+          lg: "repeat(5, 1fr)",
+        },
+        gap: 2.25,
       }}
     >
-      {corporateServices.map((items) => (
-        <Box
-          key={items.id}
-          sx={{
-            height:"100%",
-            maxWidth:250,
-            minHeight:"300px",
- 
-            borderRadius: "20px",
-            overflow: "hidden",
-            bgcolor: items.id === 5 ? "#111111" : "white",
-          }}
-        >
-          <Box
-            component="img"
-            src={cardimg}
-            sx={{
-              width: "100%",
-              height: "130px",
-              objectFit: "cover",
-              display: "block",
+      {corporateServices.map((item) => {
+        const isDark = item.id === LAST_ID;
+
+        return (
+          <MotionBox
+            key={item.id}
+            variants={fromBottom}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            whileHover={{
+              y: -12,
+              // borderColor: isDark ? "#3a3a3a" : "#e4a08a",
+              boxShadow: isDark
+                ? "0 16px 34px rgba(0,0,0,.35)"
+                : "0 16px 34px rgba(196, 93, 59, .18)",
+              transition: { duration: 0.3, ease: "easeOut" },
             }}
-          />
- 
-          <Box sx={{ p:2,
-            }}>
-            <Typography
+            sx={{
+              borderRadius: "20px",
+              overflow: "hidden",
+              bgcolor: isDark ? "#111" : "#fff",
+              border: "1px solid transparent",
+              boxShadow: isDark ? "0 0 0 rgba(0,0,0,0)" : "0 4px 20px rgba(0,0,0,.05)",
+              cursor: "default",
+              willChange: "transform",
+            }}
+          >
+            <Box
+              component="img"
+              src={cardimg}
+              alt=""
               sx={{
-                fontWeight: 600,
-                color: items.id === 5 ? "white" : "#111",
-                fontSize:"17px"
+                display: "block",
+                width: "100%",
+                height: "130px",
+                objectFit: "cover",
               }}
-            >
-              {items.title}
-            </Typography>
- 
-            <Typography
-              sx={{
-                mt: 1,
-                color: items.id === 5 ? "#cccccc" : "#666",
-                fontSize:"14px",
-                lineHeight:2
-              }}
-            >
-              {items.description}
-            </Typography>
-          </Box>
-        </Box>
-      ))}
-    </Box>
+            />
+
+            <Box sx={{ p: 3.1 }}>
+              <Typography
+                sx={{
+                  fontSize: "15px",
+                  fontWeight: 700,
+                  lineHeight: 1.25,
+                  color: isDark ? "#fff" : "#111",
+                }}
+              >
+                {item.title}
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 1.25,
+                  fontSize: "12px",
+                  lineHeight: 1.55,
+                  color: isDark ? "#d6d0cd" : "#5d564f",
+                }}
+              >
+                {item.description}
+              </Typography>
+            </Box>
+          </MotionBox>
+        );
+      })}
+    </MotionBox>
   );
 };
- 
+
 export default WhoWeServeCard;
- 

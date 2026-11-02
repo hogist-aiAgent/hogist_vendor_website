@@ -1,84 +1,81 @@
-import React from 'react'
-import {Box,Typography,Grid} from "@mui/material"
+import { Box, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
-function ServiceAreaBox() {
-      const zones = [
-    { id: 1, name: "OMR" },
-    { id: 2, name: "Guindy" },
-    { id: 3, name: "Sholinganallur" },
-    { id: 4, name: "Ambattur" },
-    { id: 5, name: "Sriperumbudur" },
-    { id: 6, name: "Oragadam" },
-  ];
+const MotionBox = motion.create ? motion.create(Box) : motion(Box);
 
+const zones = [
+  { id: 1, name: "OMR" },
+  { id: 2, name: "Guindy" },
+  { id: 3, name: "Sholinganallur" },
+  { id: 4, name: "Ambattur" },
+  { id: 5, name: "Sriperumbudur" },
+  { id: 6, name: "Oragadam" },
+];
+
+const ServiceAreaBox = () => {
   return (
-    <>
-    <Box sx={{
-        width:"100%",
-        height:"100%",
-        bgcolor:"rgb(251, 239, 236)",
-        borderRadius:"18px",
-        maxWidth:"520px",
-        maxHeight:"320px",
-        p:"32px"
-        
-    }}>
-        <Grid item xs={12} >
-            <Typography sx={{
-                color:" rgb(198, 8, 0)",
-                letterSpacing: "0.14em",
-                fontSize:"12px",
-                fontWeight:700,
-                          mb: 2,
-
-            }}>
-                ZONES SERVED
-                </Typography>
-                 <Box
+    <Box
+      sx={{
+        width: "100%",
+        boxSizing: "border-box",
+        bgcolor: "#fbefec",
+        borderRadius: "20px",
+        p: { xs: 3, md: 4.5 },
+        mt: { xs: 0, md: 5 },
+      }}
+    >
+      <Typography
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 1.5,
+          color: "#c60800",
+          letterSpacing: "0.14em",
+          fontSize: "12px",
+          fontWeight: 700,
           mb: 2,
         }}
       >
-        {zones.map((items)=>(
-                    <Box key={items.id}
-                    
- sx={{
-    bgcolor: "rgb(255, 255, 255)",
-    border: "1px solid rgb(240, 217, 212)",
-    borderRadius: "999px",
-    p: "12px 20px",
-    fontSize: "14.5px",
-    fontWeight: 500,
-    color: "rgb(61, 56, 53)",
-  }}
->
-    {items.name}
-                    </Box>
-                ))}
+        ZONES SERVED
+      </Typography>
+
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2.5 }}>
+        {zones.map((item) => (
+          <MotionBox
+            key={item.id}
+            whileHover={{
+              borderColor: "#c60800",
+              boxShadow: "0 10px 22px rgba(198, 8, 0, .14)",
+            }}
+            sx={{
+              bgcolor: "#fff",
+              border: "1px solid #f0d9d4",
+              borderRadius: "999px",
+              px: 2,
+              py: 1.5,
+              fontSize: "13px",
+              fontWeight: 500,
+              lineHeight: 1.5,
+              color: "#3d3835",
+              boxShadow: "0 0 0 rgba(0,0,0,0)",
+              cursor: "default",
+              willChange: "transform",
+            }}
+          >
+            {item.name}
+          </MotionBox>
+        ))}
       </Box>
-                
-                <Typography sx={{
-                    color:"rgb(122, 113, 109)",
-                    fontWeight:400,
-                    fontSize:"14px"
 
-                }}>
-                    Site outside these zones? Send the location and we will confirm coverage.
-
-
-                    
-
-                </Typography>
-             
-        </Grid>
-
+      <Typography
+        sx={{
+          color: "#7a716d",
+          fontWeight: 400,
+          fontSize: "12px",
+          lineHeight: 1.7,
+        }}
+      >
+        Site outside these zones? Send the location and we will confirm coverage.
+      </Typography>
     </Box>
+  );
+};
 
-    </>
-  )
-}
-
-export default ServiceAreaBox
+export default ServiceAreaBox;

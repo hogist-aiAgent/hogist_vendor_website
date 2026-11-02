@@ -1,37 +1,33 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 
-const LINE = "#eeeeee";
-const RED = "#C70800";
+const LINE = "#f0e2e0";
+const RED = "#c60800";
 
 const CONTENT = [
   {
     id: 1,
     num: "01",
     bigtext: "Requirement Discussion",
-    smalltext:
-      "Headcount, shifts, meal timings, site facilities and budget range.",
+    smalltext: "Headcount, shifts, meal timings, site facilities and budget range.",
   },
   {
     id: 2,
     num: "02",
     bigtext: "Menu & Meal Planning",
-    smalltext:
-      "A proposed menu cycle with veg and non-veg options for your review.",
+    smalltext: "A proposed menu cycle with veg and non-veg options for your review.",
   },
   {
     id: 3,
     num: "03",
     bigtext: "Food Trial",
-    smalltext:
-      "A tasting at your site so your team can check quality and portioning.",
+    smalltext: "A tasting at your site so your team can check quality and portioning.",
   },
   {
     id: 4,
     num: "04",
     bigtext: "Cafeteria Setup / Service Planning",
-    smalltext:
-      "Counter layout, service flow, staffing and break-window schedule.",
+    smalltext: "Counter layout, service flow, staffing and break-window schedule.",
   },
   {
     id: 5,
@@ -54,10 +50,8 @@ const HowItWorksBox = () => {
         bgcolor: "#fff",
         borderRadius: "20px",
         overflow: "hidden", // keeps the dark card inside the rounded corners
-        boxShadow: "0 10px 40px rgba(0,0,0,.06)",
+        boxShadow: "0 4px 20px rgba(0,0,0,.05)",
         display: "grid",
-        maxWidth:1300,
-        mx:"auto",
         gridTemplateColumns: { xs: "1fr", md: "repeat(5, 1fr)" },
       }}
     >
@@ -73,8 +67,9 @@ const HowItWorksBox = () => {
             onFocus={() => setActive(index)}
             onClick={() => setActive(index)}
             sx={{
-              px: 2.5,
-              py: 4.5,
+              px: 3,
+              pt: 3,
+              pb: 3,
               cursor: "default",
               outline: "none",
               bgcolor: isActive ? "#111111" : "#fff",
@@ -89,20 +84,21 @@ const HowItWorksBox = () => {
           >
             <Typography
               sx={{
-                fontSize: "23px",
+                fontSize: "30px",
                 fontWeight: 800,
                 lineHeight: 1.2,
-                color: isActive ? RED : "#EFCEC9",
+                color: isActive ? RED : "#efcec9",
                 transition: "color .2s",
               }}
             >
               {item.num}
             </Typography>
+
             <Typography
               sx={{
                 mt: 1.5,
                 fontSize: "15px",
-                fontWeight: 800,
+                fontWeight: 700,
                 lineHeight: 1.25,
                 color: isActive ? "#fff" : "#111111",
                 transition: "color .2s",
@@ -110,14 +106,14 @@ const HowItWorksBox = () => {
             >
               {item.bigtext}
             </Typography>
+
             <Typography
               sx={{
                 mt: 1.5,
-                fontSize: "11px",
+                fontSize: "12px",
                 fontWeight: 400,
                 lineHeight: 1.6,
-                maxWidth: 160,
-                color: isActive ? "#d6d6d6" : "#575049",
+                color: isActive ? "#e3d3d0" : "#575049",
                 transition: "color .2s",
               }}
             >

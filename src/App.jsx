@@ -11,6 +11,7 @@ import PlanningCafeteria from "./Components/PlanningCafeteria/PlanningCafeteria.
 import ServiceArea from "./Components/ServiceArea/ServiceArea.jsx";
 import WhyHogist from "./Components/WhyHogist/WhyHogist.jsx";
 import WhoWeServe from "./Components/WhoWeServe/WhoWeServe.jsx";
+import FoodSafetyHygiene from "./Components/FoodSafetyHygiene/FoodSafetyHygiene.jsx";
 const App=()=>{
     return(
         <Box>
@@ -18,14 +19,16 @@ const App=()=>{
         <Hero/>
         <WeProvide/>
         <HowItWorks/>
-        <FaqSection/>
-        <DailyEmployeeMeals/>
-        <MealCategories/>
+         <DailyEmployeeMeals/>
+         <MealCategories/>
         <OngoingServices/>
-        <PlanningCafeteria/>
-        <ServiceArea/>
-        <WhyHogist/>
         <WhoWeServe/>
+                <WhyHogist/>
+        <ServiceArea/>
+        <FaqSection/>
+        <PlanningCafeteria/>
+        <FoodSafetyHygiene/>
+        
 
 
     </Box>

@@ -1,6 +1,8 @@
 import { Box, Typography } from "@mui/material";
-const RED = "#C8102E";
-const LINE = "#e6e6e6";
+
+const RED = "#c60800";
+const LINE = "#ecdede";
+
 const WeProvideGridContent = [
   {
     id: 1,
@@ -39,6 +41,7 @@ const WeProvideGridContent = [
     sum: "Reviews, feedback handling and menu adjustments as your workforce and requirements change.",
   },
 ];
+
 const WeProvideGrid = () => {
   const total = WeProvideGridContent.length;
 
@@ -52,40 +55,68 @@ const WeProvideGrid = () => {
     >
       {WeProvideGridContent.map((item, i) => {
         const isLeft = i % 2 === 0;
-        const borderBottomMobile = i === total - 1 ? "none" : `1px solid${LINE}`;
-        const borderBottomDesktop =i === total - 2 ? "none" : `1px solid${LINE}`;
+        const isFirstRow = i < 2;
+        const isLastRow = i >= total - 2;
+        const isLast = i === total - 1;
+
         return (
           <Box
-          Key={item.id}
+            key={item.id}
             sx={{
               display: "flex",
               flexDirection: "column",
-              gap: 1.5,
-              pt:{xs:i===0?0:3,md:i<2?0:3.5},
-              pb:{xs:i===total.length-1?0:3},
-              pr:{xs:"none",md:isLeft?3:0},
-              pl: { xs: 0, md: isLeft ? 0 : 3 },
-              borderRight:{xs:"none",md:isLeft?`1px solid${LINE}`:"none"},
-              borderBottom:{xs:borderBottomMobile,md:borderBottomDesktop},
+              gap: 1.25,
+              pt: { xs: i === 0 ? 0 : 3, md: isFirstRow ? 0 : 5 },
+              pb: { xs: isLast ? 0 : 3, md: isLastRow ? 0 : 4.5 },
+              pr: { xs: 0, md: isLeft ? 2 : 0 },
+              pl: { xs: 0, md: isLeft ? 0 : 4 },
+              borderRight: {
+                xs: "none",
+                md: isLeft ? `1px solid ${LINE}` : "none",
+              },
+              borderBottom: {
+                xs: isLast ? "none" : `1px solid ${LINE}`,
+                md: isLastRow ? "none" : `1px solid ${LINE}`,
+              },
             }}
           >
-            <Typography sx={{ color: RED, fontWeight: 700, fontSize: 14, letterSpacing: 0.5 }}>
+            <Typography
+              sx={{
+                color: RED,
+                fontWeight: 700,
+                fontSize: "13px",
+                letterSpacing: "0.05em",
+              }}
+            >
               {item.num}
             </Typography>
+
             <Typography
               component="h3"
-              sx={{ color: "#111", fontWeight: 800, fontSize: { xs: 15, md: 15 }, lineHeight: 1.2 }}
+              sx={{
+                color: "#111",
+                fontWeight: 700,
+                fontSize: { xs: "18px" },
+                lineHeight: 1.25,
+              }}
             >
               {item.title}
             </Typography>
-            <Typography sx={{ color:"#575049", fontSize: { xs: 11, md: 11 }, maxWidth:270,wordSpacing:1}}>
+
+            <Typography
+              sx={{
+                color: "#575049",
+                fontSize: { xs: "12px" },
+                lineHeight: 1.65,
+              }}
+            >
               {item.sum}
             </Typography>
-
           </Box>
         );
       })}
     </Box>
   );
 };
+
 export default WeProvideGrid;

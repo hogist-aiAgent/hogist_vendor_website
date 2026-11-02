@@ -1,8 +1,6 @@
 import { Box, Typography } from "@mui/material";
-const RED = "#b62819";
 
-const SectionIntro = ({ id, smalltext, bigtext, para, maxWidth = 300 }) => {
-  const SectionIntroText = [
+const SectionIntroText = [
   {
     id: 1,
     smalltext: "CORPORATE CAFETERIA & CANTEEN SERVICES",
@@ -42,146 +40,182 @@ const SectionIntro = ({ id, smalltext, bigtext, para, maxWidth = 300 }) => {
     para: "Tell us your headcount, shifts and site, and we'll put together a cafeteria service plan and quote built around your workplace — no obligation.",
   },
   {
-    id:7,
-    smalltext:"SERVICE AREAS",
-    bigtext:"Corporate canteen services across Chennai and its industrial belt",
-    para:"We run corporate canteen services in Chennai and across its surrounding industrial corridor — IT and corporate hubs along OMR, Guindy and Sholinganallur, and manufacturing zones in Ambattur, Sriperumbudur and Oragadam. With 200+ partner kitchens, we can place a cafeteria service close to your site and scale it as your workforce grows.",
-    para1:"Office cafeterias and industrial canteens are run differently, and we plan for both. Our office cafeteria services suit corporate floors and IT parks where employees expect variety and quick service during short breaks; for plants and round-the-clock sites, service is geared to high volume and multiple shifts. The meal planning, hygiene process and single point of contact stay the same — only the scale and menu change."
-
+    id: 7,
+    area: true,
+    smalltext: "SERVICE AREAS",
+    bigtext: "Corporate canteen services across Chennai and its industrial belt",
+    para: "We run corporate canteen services in Chennai and across its surrounding industrial corridor — IT and corporate hubs along OMR, Guindy and Sholinganallur, and manufacturing zones in Ambattur, Sriperumbudur and Oragadam. With 200+ partner kitchens, we can place a cafeteria service close to your site and scale it as your workforce grows.",
+    para1:
+      "Office cafeterias and industrial canteens are run differently, and we plan for both. Our office cafeteria services suit corporate floors and IT parks where employees expect variety and quick service during short breaks; for plants and round-the-clock sites, service is geared to high volume and multiple shifts. The meal planning, hygiene process and single point of contact stay the same — only the scale and menu change.",
   },
   {
-  id: 8,
-  smalltext: "WHY HOGIST",
-  bigtext: "Why choose Hogist as your corporate cafeteria vendor?",
-  para: "Choosing the right corporate cafeteria vendor means having one reliable team that takes ownership of the entire experience — from food quality and daily service to employee satisfaction and ongoing support. With Hogist, your workplace cafeteria is managed seamlessly, so you can focus on your people while we take care of the food."
-},
-{
-  id:9,
-  smalltext:"WHO WE SERVE",
-  bigtext:"Workplaces we run cafeterias for"
+    id: 8,
+    narrow: true,
+    smalltext: "WHY HOGIST",
+    bigtext: "Why choose Hogist as your corporate cafeteria vendor?",
+    para: "Choosing the right corporate cafeteria vendor means one team owns the outcome — the food, the service and the follow-up.",
+  },
+  {
+    id: 9,
+    smalltext: "WHO WE SERVE",
+    bigtext: "Workplaces we run cafeterias for",
+  },
+  {
+    id: 10,
+    wide: true,
+    smalltext: "ONGOING SERVICE",
+    bigtext: "The service continues after the food is delivered",
+    para: "A cafeteria vendor's job doesn't end at the counter. Our corporate cafeteria management keeps running behind the scenes so daily service stays consistent.",
+  },
+  {
+  id: 11,
+  smalltext: "FOOD SAFETY & HYGIENE",
+  bigtext: "Hygiene is a process, not a promise",
+  para: "Every cafeteria we run follows the same defined food-service routine, from preparation through to the serving counter."
 }
-  
 ];
-  // const filteritems = SectionIntroText.filter((item) => item.id == 1);
-  // console.log(filteritems);
-  const pillStyle = {
-    display: "inline-block",
-    fontSize: "10px",
-    fontWeight: 800,
-    color: "#c60800",
-    bgcolor: "white",
-    border: "1px solid #eee",
-    borderRadius: "999px",
-    px: 2.5,
-    py: 1,
-  };
-  const plainstyle = {
-    fontSize: "10px",
-    fontWeight: 800,
-    color: "#c60800",
-  };
-  return (
+
+const pillStyle = {
+  display: "inline-block",
+  fontSize: "11px",
+  fontWeight: 600,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  color: "#c60800",
+  bgcolor: "white",
+  border: "1px solid #eee",
+  borderRadius: "999px",
+  px: 2.25,
+  py: 1.1,
+};
+
+const plainStyle = {
+  fontSize: "11px",
+  fontWeight: 700,
+  letterSpacing: "0.12em",
+  textTransform: "uppercase",
+  color: "#c60800",
+};
+
+const SectionIntro = ({ id, headingSize, paraSize }) => {
+      return (
     <Box>
-      <Box>
-        {SectionIntroText.map((items) => {
-          const isFirst = items.id === id;
-          if (!isFirst) {
-            return null;
-          }
-          const isPill = items.id === 1;
-          const isCenter = items.center;
+      {SectionIntroText.map((items) => {
+        if (items.id !== id) return null;
 
-          const eyebrow = (
-            <Box>
-              <Typography sx={isPill ? pillStyle : plainstyle}>
-                {items.smalltext}
-              </Typography>
-            </Box>
-          );
-          const heading = (
-            <Box>
-              <Typography
-                sx={{
-                  fontSize: "42px",
-                  fontWeight: 800,
-                  maxWidth: 500,
-                  lineHeight: 1.2,
-                }}
-              >
-                {items.bigtext}
-              </Typography>
-            </Box>
-          );
-          const paragraph = (
+        const isHero = items.id === 1;
+        const isPill = isHero;
+        const isCenter = items.center;
+
+        const eyebrow = (
+          <Box>
+            <Typography sx={isPill ? pillStyle : plainStyle}>
+              {items.smalltext}
+            </Typography>
+          </Box>
+        );
+
+        const heading = (
+          <Box>
             <Typography
               sx={{
-                color: "#4a4340",
-                fontWeight: 100,
-                fontSize: "13px",
-                maxWidth: 400,
-                lineHeight: 1.8,
+                fontSize: headingSize || (isHero
+  ? { xs: "36px", md: "58px" }
+  : { xs: "30px", md: "40px" }),
+                fontWeight: 800,
+                color: "#111",
+                maxWidth: isHero
+                  ? 640
+                  : isCenter
+                  ? 600
+                  : items.split
+                  ? 560
+                  : items.narrow
+                  ? 560
+                  : items.area
+                  ? 720
+                  : items.wide
+                  ? 720
+                  : 640,
+                lineHeight: isHero ? 1.1 : 1.15,
+                letterSpacing: "-0.02em",
               }}
             >
-              {items.para}
+              {items.bigtext}
             </Typography>
-          );
-           const paragraph1 = (
-            <Typography
-              sx={{
-                color: "#4a4340",
-                fontWeight: 100,
-                fontSize: "13px",
-                maxWidth: 400,
-                lineHeight: 1.8,
-                mt:1.5
-              }}
-            >
-              {items.para1}
-            </Typography>
-          );
+          </Box>
+        );
 
-          if (items.split) {
-            return (
-              <Box
-                key={items.id}
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-                  justifyContent: "space-between",
-                  alignItems: { xs: "flex-start", md: "flex-end" },
-                  gap: { xs: 2, md: 6 },
-                  color: "black",
-                }}
-              >
-                <Box sx={{ display: "grid", gap: 1 }}>
-                  {eyebrow}
-                  {heading}
-                </Box>
-                {paragraph}
-              </Box>
-            );
-          }
+        const paraSx = {
+          color: "#4a4340",
+          fontWeight: 400,
+fontSize: paraSize || "16px",
+          maxWidth: isHero
+            ? 500
+            : isCenter
+            ? 580
+            : items.split
+            ? 420
+            : items.narrow
+            ? 540
+            : items.area
+            ? 680
+            : items.wide
+            ? 700
+            : 640,
+          lineHeight: 1.7,
+        };
 
+        const paragraph = items.para ? (
+          <Typography sx={paraSx}>{items.para}</Typography>
+        ) : null;
+
+        const paragraph1 = items.para1 ? (
+          <Typography sx={paraSx}>{items.para1}</Typography>
+        ) : null;
+
+        if (items.split) {
           return (
             <Box
               key={items.id}
               sx={{
-                display: "grid",
-                gap: 1,
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                justifyContent: "space-between",
+                alignItems: { xs: "flex-start", md: "flex-end" },
+                gap: { xs: 2, md: 6 },
                 color: "black",
-                justifyItems: isCenter ? "center" : "start",
-                textAlign: isCenter ? "center" : "left",
               }}
             >
-              {eyebrow}
-              {heading}
+              <Box sx={{ display: "grid", gap: 1 }}>
+                {eyebrow}
+                {heading}
+              </Box>
               {paragraph}
-              {paragraph1}
             </Box>
           );
-        })}
-      </Box>
+        }
+
+        return (
+          <Box
+            key={items.id}
+            sx={{
+              display: "grid",
+              gap: isHero ? 2.25 : 2,
+              color: "black",
+              justifyItems: isCenter ? "center" : "start",
+              textAlign: isCenter ? "center" : "left",
+            }}
+          >
+            {eyebrow}
+            {heading}
+            {paragraph}
+            {paragraph1}
+          </Box>
+        );
+      })}
     </Box>
   );
 };
+
 export default SectionIntro;
