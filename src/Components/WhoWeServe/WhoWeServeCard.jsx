@@ -103,7 +103,7 @@ const WhoWeServeCard = () => {
             <Box sx={{ p: 3.1 }}>
               <Typography
                 sx={{
-                  fontSize: "15px",
+                  fontSize: { xs: "15px", lg: "17px" },
                   fontWeight: 700,
                   lineHeight: 1.25,
                   color: isDark ? "#fff" : "#111",
@@ -115,7 +115,7 @@ const WhoWeServeCard = () => {
               <Typography
                 sx={{
                   mt: 1.25,
-                  fontSize: "12px",
+                  fontSize: { xs: "12px", lg: "13px" },
                   lineHeight: 1.55,
                   color: isDark ? "#d6d0cd" : "#5d564f",
                 }}

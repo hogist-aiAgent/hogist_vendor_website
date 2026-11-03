@@ -97,7 +97,7 @@ const HowItWorksBox = () => {
             <Typography
               sx={{
                 mt: 1.5,
-                fontSize: "15px",
+                fontSize: {xs: "15px", lg: "17px"},
                 fontWeight: 700,
                 lineHeight: 1.25,
                 color: isActive ? "#fff" : "#111111",
@@ -110,7 +110,7 @@ const HowItWorksBox = () => {
             <Typography
               sx={{
                 mt: 1.5,
-                fontSize: "12px",
+                fontSize: {xs: "12px", lg: "13px"},
                 fontWeight: 400,
                 lineHeight: 1.6,
                 color: isActive ? "#e3d3d0" : "#575049",

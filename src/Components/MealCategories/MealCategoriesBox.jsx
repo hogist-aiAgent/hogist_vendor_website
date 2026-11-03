@@ -131,7 +131,7 @@ const MealCard = ({ card, index }) => {
         <Typography
           sx={{
             mt: 1.25,
-            fontSize: "12px",
+            fontSize: { xs: "12px", lg: "13px" },
             lineHeight: 1.6,
             maxWidth: isFeature ? 300 : "none",
             color: onDark ? "#e3d3d0" : "#575049",

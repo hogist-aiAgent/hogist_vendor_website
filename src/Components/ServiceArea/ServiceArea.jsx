@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { motion } from "framer-motion";
 import SectionIntro from "../SectionIntro/SectionIntro";
 import ServiceAreaBox from "./ServiceAreaBox";
+import MainContainer from "../../Common/Container/Container";
 
 const MotionBox = motion.create ? motion.create(Box) : motion(Box);
 
@@ -17,6 +18,8 @@ const fromBottom = {
 
 const ServiceArea = () => {
   return (
+    // Outer box triggers the animations; the variants below reach the
+    // children through the Grid automatically.
     <MotionBox
       initial="hidden"
       whileInView="show"
@@ -24,33 +27,40 @@ const ServiceArea = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
       sx={{
         bgcolor: "white",
-        py: { xs: 4, md: 7 },
-        px: { xs: 2, sm: 4, md: 6 },
-        display: "grid",
-        gridTemplateColumns: { xs: "1fr", md: "1.2fr 1fr" },
-        columnGap: { md: 8 },
-        rowGap: { xs: 4, md: 0 },
-        alignItems: "start",
-        overflow: "hidden",
+       
       }}
     >
-      <MotionBox
-        variants={fromLeft}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <SectionIntro
-          id={7}
-          headingSize={{ xs: "28px", md: "32px" }}
-          paraSize={{ xs: "13px" }}
-        />
-      </MotionBox>
+      <MainContainer style={{ py: { xs: 4, sm: 6, md: 7 } }}>
+        <Grid
+          container
+          spacing={{ xs: 4, md: 8 }}
+          sx={{ alignItems: "flex-start" }}
+        >
+          {/* LEFT */}
+          <Grid size={{ xs: 12, md: 7 }}>
+            <MotionBox
+              variants={fromLeft}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <SectionIntro
+                id={7}
+                headingSize={{ xs: "28px", md: "32px" }}
+                paraSize={{ xs: "13px", lg: "14px" }}
+              />
+            </MotionBox>
+          </Grid>
 
-      <MotionBox
-        variants={fromBottom}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-      >
-        <ServiceAreaBox />
-      </MotionBox>
+          {/* RIGHT */}
+          <Grid size={{ xs: 12, md: 5 }}>
+            <MotionBox
+              variants={fromBottom}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            >
+              <ServiceAreaBox />
+            </MotionBox>
+          </Grid>
+        </Grid>
+      </MainContainer>
     </MotionBox>
   );
 };

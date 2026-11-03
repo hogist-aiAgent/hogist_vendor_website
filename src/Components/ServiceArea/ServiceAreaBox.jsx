@@ -50,7 +50,7 @@ const ServiceAreaBox = () => {
               borderRadius: "999px",
               px: 2,
               py: 1.5,
-              fontSize: "13px",
+              fontSize: { xs: "13px", lg: "14px" },
               fontWeight: 500,
               lineHeight: 1.5,
               color: "#3d3835",
@@ -68,7 +68,7 @@ const ServiceAreaBox = () => {
         sx={{
           color: "#7a716d",
           fontWeight: 400,
-          fontSize: "12px",
+          fontSize: { xs: "12px", lg: "13px" },
           lineHeight: 1.7,
         }}
       >

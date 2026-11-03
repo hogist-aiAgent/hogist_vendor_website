@@ -68,16 +68,36 @@ const SectionIntroText = [
     para: "A cafeteria vendor's job doesn't end at the counter. Our corporate cafeteria management keeps running behind the scenes so daily service stays consistent.",
   },
   {
-  id: 11,
-  smalltext: "FOOD SAFETY & HYGIENE",
-  bigtext: "Hygiene is a process, not a promise",
-  para: "Every cafeteria we run follows the same defined food-service routine, from preparation through to the serving counter."
-}
+    id: 11,
+    smalltext: "FOOD SAFETY & HYGIENE",
+    bigtext: "Hygiene is a process, not a promise",
+    para: "Every cafeteria we run follows the same defined food-service routine, from preparation through to the serving counter.",
+  },
 ];
+
+// Fill in a tablet (sm) size so text doesn't jump from the mobile size
+// straight to the desktop size.
+const toNum = (v) => parseFloat(v);
+
+// heading: sm = halfway between the xs and md size
+const withTabletHeading = (size) => {
+  if (!size || typeof size !== "object" || size.sm !== undefined) return size;
+  if (size.xs === undefined || size.md === undefined) return size;
+  return {
+    ...size,
+    sm: `${Math.round((toNum(size.xs) + toNum(size.md)) / 2)}px`,
+  };
+};
+
+// paragraph: a bit bigger on tablet, back to the original size from md up
+const withTabletPara = (size) => {
+  if (!size || typeof size !== "object" || size.sm !== undefined) return size;
+  return { ...size, sm: "15px", md: size.md ?? size.xs };
+};
 
 const pillStyle = {
   display: "inline-block",
-  fontSize: "11px",
+  fontSize: { xs: "11px", sm: "12px" },
   fontWeight: 600,
   letterSpacing: "0.08em",
   textTransform: "uppercase",
@@ -90,16 +110,16 @@ const pillStyle = {
 };
 
 const plainStyle = {
-  fontSize: "11px",
+  fontSize: { xs: "11px", sm: "12px" },
   fontWeight: 700,
   letterSpacing: "0.12em",
   textTransform: "uppercase",
   color: "#c60800",
 };
 
-const SectionIntro = ({ id, headingSize, paraSize }) => {
-      return (
-    <Box>
+const SectionIntro = ({ id, headingSize, paraSize, sx }) => {
+  return (
+    <Box sx={sx}>
       {SectionIntroText.map((items) => {
         if (items.id !== id) return null;
 
@@ -119,13 +139,16 @@ const SectionIntro = ({ id, headingSize, paraSize }) => {
           <Box>
             <Typography
               sx={{
-                fontSize: headingSize || (isHero
-  ? { xs: "36px", md: "58px" }
-  : { xs: "30px", md: "40px" }),
+                fontSize: withTabletHeading(
+                  headingSize ||
+                    (isHero
+                      ? { xs: "36px", md: "58px" }
+                      : { xs: "30px", md: "40px" })
+                ),
                 fontWeight: 800,
                 color: "#111",
                 maxWidth: isHero
-                  ? 640
+                  ? "fit-content"
                   : isCenter
                   ? 600
                   : items.split
@@ -149,9 +172,9 @@ const SectionIntro = ({ id, headingSize, paraSize }) => {
         const paraSx = {
           color: "#4a4340",
           fontWeight: 400,
-fontSize: paraSize || "16px",
+          fontSize: withTabletPara(paraSize) || "16px",
           maxWidth: isHero
-            ? 500
+                  ? "fit-content"
             : isCenter
             ? 580
             : items.split

@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import MainContainer from "../../Common/Container/Container";
 
 const MotionBox = motion.create ? motion.create(Box) : motion(Box);
-const MotionTypography =  motion.create(Typography)
- 
+const MotionTypography = motion.create(Typography);
 
 const RED = "#c60800";
 
@@ -74,13 +74,9 @@ const FaqSection = () => {
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      sx={{
-        py: { xs: 4, md: 8 },
-        px: { xs: 2, sm: 4, md: "20px" },
-        overflow: "hidden",
-      }}
+      
     >
-      <Box sx={{ maxWidth: 1440, mx: "auto" }}>
+      <MainContainer style={{ py: { xs: 4, sm: 6, md: 7 } }}>
         <MotionTypography
           variants={fromLeft}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -101,7 +97,7 @@ const FaqSection = () => {
           sx={{
             mt: 0.5,
             mb: { xs: 3, md: 4 },
-            fontSize: { xs: "28px", md: "35px" },
+            fontSize: { xs: "28px", sm: "32px", md: "35px" },
             fontWeight: 800,
             lineHeight: 1.15,
             letterSpacing: "-0.02em",
@@ -115,8 +111,9 @@ const FaqSection = () => {
           variants={grid}
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gridAutoRows: { md: "minmax(150px, auto)" },
+            // tablet and up: 2 columns
+            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+            gridAutoRows: { sm: "minmax(150px, auto)" },
             gap: 2,
           }}
         >
@@ -145,7 +142,7 @@ const FaqSection = () => {
                     : "0 2px 10px rgba(0,0,0,.04)",
                   p: { xs: 2.5, md: 3.5 },
                   boxSizing: "border-box",
-                  minHeight: { xs: 0, md: 150 },
+                  minHeight: { xs: 0, sm: 150 },
                   cursor: "default",
                   willChange: "transform",
                 }}
@@ -153,7 +150,7 @@ const FaqSection = () => {
                 <Typography
                   component="h3"
                   sx={{
-                    fontSize: { xs: "15px" },
+                    fontSize: { xs: "15px", lg: "17px" },
                     fontWeight: 700,
                     lineHeight: 1.35,
                     color: isDark ? "#fff" : "#111",
@@ -165,7 +162,7 @@ const FaqSection = () => {
                 <Typography
                   sx={{
                     mt: 1.5,
-                    fontSize: "12px",
+                    fontSize: { xs: "12px", lg: "13px" },
                     lineHeight: 1.7,
                     color: isDark ? "#d6d0cd" : "#5d564f",
                   }}
@@ -176,7 +173,7 @@ const FaqSection = () => {
             );
           })}
         </MotionBox>
-      </Box>
+      </MainContainer>
     </MotionBox>
   );
 };

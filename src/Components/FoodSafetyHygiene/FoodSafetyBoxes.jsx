@@ -48,7 +48,7 @@ const FoodSafetyBoxes = () => {
         variants={grid}
         sx={{
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr", lg: "1fr 1fr" },
           border: "1px solid #262220",
           borderRadius: "16px",
           overflow: "hidden",
@@ -70,10 +70,14 @@ const FoodSafetyBoxes = () => {
               borderRight: {
                 xs: "none",
                 sm: i % 2 === 0 ? "1px solid #262220" : "none",
+                md: "none",
+                lg: i % 2 === 0 ? "1px solid #262220" : "none",
               },
               borderBottom: {
                 xs: i < items.length - 1 ? "1px solid #262220" : "none",
                 sm: i < 2 ? "1px solid #262220" : "none",
+                md: i < items.length - 1 ? "1px solid #262220" : "none",
+                lg: i < 2 ? "1px solid #262220" : "none",
               },
               cursor: "default",
             }}
@@ -123,7 +127,7 @@ const FoodSafetyBoxes = () => {
       >
         <Typography
           sx={{
-            fontSize: "13px",
+            fontSize: { xs: "13px", lg: "14px" },
             fontWeight: 700,
             lineHeight: 1.4,
             color: "#fff",

@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { motion } from "framer-motion";
 import WhoWeServeCard from "./WhoWeServeCard";
 import SectionIntro from "../SectionIntro/SectionIntro";
+import MainContainer from "../../Common/Container/Container";
 
 const MotionBox = motion.create ? motion.create(Box) : motion(Box);
 
@@ -22,13 +23,9 @@ const WhoWeServe = () => {
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      sx={{
-        py: { xs: 4, md: 10 },
-        px: { xs: 2, sm: 4, md: "42px" },
-        overflow: "hidden",
-      }}
+      
     >
-      <Box sx={{ maxWidth: 1360, mx: "auto" }}>
+      <MainContainer style={{ py: { xs: 4, sm: 6, md: 7 } }}>
         <MotionBox
           variants={fromLeft}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -47,7 +44,7 @@ const WhoWeServe = () => {
         >
           <WhoWeServeCard />
         </MotionBox>
-      </Box>
+      </MainContainer>
     </MotionBox>
   );
 };

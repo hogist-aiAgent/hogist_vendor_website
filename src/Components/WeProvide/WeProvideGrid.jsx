@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 const RED = "#c60800";
 const LINE = "#ecdede";
@@ -47,74 +47,79 @@ const WeProvideGrid = () => {
 
   return (
     <Box
-      sx={{
-        display: "grid",
-        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-        width: "100%",
-      }}
+    // sx={{
+    //   display: "grid",
+    //   gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+    //   width: "100%",
+    // }}
     >
-      {WeProvideGridContent.map((item, i) => {
-        const isLeft = i % 2 === 0;
-        const isFirstRow = i < 2;
-        const isLastRow = i >= total - 2;
-        const isLast = i === total - 1;
+      <Grid container>
+        {WeProvideGridContent.map((item, i) => {
+          const isLeft = i % 2 === 0;
+          const isFirstRow = i < 2;
+          const isLastRow = i >= total - 2;
+          const isLast = i === total - 1;
 
-        return (
-          <Box
-            key={item.id}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 1.25,
-              pt: { xs: i === 0 ? 0 : 3, md: isFirstRow ? 0 : 5 },
-              pb: { xs: isLast ? 0 : 3, md: isLastRow ? 0 : 4.5 },
-              pr: { xs: 0, md: isLeft ? 2 : 0 },
-              pl: { xs: 0, md: isLeft ? 0 : 4 },
-              borderRight: {
-                xs: "none",
-                md: isLeft ? `1px solid ${LINE}` : "none",
-              },
-              borderBottom: {
-                xs: isLast ? "none" : `1px solid ${LINE}`,
-                md: isLastRow ? "none" : `1px solid ${LINE}`,
-              },
-            }}
-          >
-            <Typography
+          return (
+            <Grid
+              size={{ xs: 12, md: 6 }}
+              key={item.id}
               sx={{
-                color: RED,
-                fontWeight: 700,
-                fontSize: "13px",
-                letterSpacing: "0.05em",
+                display: "flex",
+                flexDirection: "column",
+                // gap: 1,
+                // pt: { xs: i === 0 ? 0 : 3, md: isFirstRow ? 0 : 5 },
+                // pb: { xs: isLast ? 0 : 3, md: isLastRow ? 0 : 4.5 },
+                // pr: { xs: 0, md: isLeft ? 2 : 0 },
+                // pl: { xs: 0, md: isLeft ? 0 : 4 },
+                p: 3.2,
+                borderRight: {
+                  xs: "none",
+                  md: isLeft ? `1px solid ${LINE}` : "none",
+                },
+                borderBottom: {
+                  xs: isLast ? "none" : `1px solid ${LINE}`,
+                  md: isLastRow ? "none" : `1px solid ${LINE}`,
+                },
               }}
             >
-              {item.num}
-            </Typography>
+              <Typography
+                sx={{
+                  color: RED,
+                  fontWeight: 700,
+                  fontSize: "13px",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                {item.num}
+              </Typography>
 
-            <Typography
-              component="h3"
-              sx={{
-                color: "#111",
-                fontWeight: 700,
-                fontSize: { xs: "18px" },
-                lineHeight: 1.25,
-              }}
-            >
-              {item.title}
-            </Typography>
+              <Typography
+                component="h3"
+                sx={{
+                  color: "#111",
+                  fontWeight: 700,
+                  fontSize: { xs: "18px" },
+                  lineHeight: 1.25,
+                }}
+              >
+                {item.title}
+              </Typography>
 
-            <Typography
-              sx={{
-                color: "#575049",
-                fontSize: { xs: "12px" },
-                lineHeight: 1.65,
-              }}
-            >
-              {item.sum}
-            </Typography>
-          </Box>
-        );
-      })}
+              <Typography
+                sx={{
+                  color: "#575049",
+                  fontSize: { xs: "12px",lg:"13px" },
+                  lineHeight: 1.65,
+                  mt: 1,
+                }}
+              >
+                {item.sum}
+              </Typography>
+            </Grid>
+          );
+        })}
+      </Grid>
     </Box>
   );
 };

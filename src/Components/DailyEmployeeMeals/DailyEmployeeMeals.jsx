@@ -1,7 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography,Grid } from "@mui/material";
 import { motion } from "framer-motion";
 import SectionIntro from "../SectionIntro/SectionIntro";
 import DailyEmployeeMealsimg from "../../assets/images/DAILY EMPLOYEE MEALS .jpg";
+import MainContainer from "../../Common/Container/Container";
+
 
 const RED = "#c60800";
 const LINE = "#f0e2e0";
@@ -45,17 +47,21 @@ const DailyEmployeeMeals = () => {
     <Box
       sx={{
         bgcolor: "#fff",
-        py: { xs: 4, md: 10 },
-        px: { xs: 2, sm: 4, md: "42px" },
-        display: "grid",
-        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-        columnGap: { md: 8 },
-        rowGap: { xs: 4, md: 0 },
-        alignItems: "center",
-        overflow: "hidden", // prevents horizontal scrollbar during the slide
+        // py: { xs: 4, md: 10 },
+        // px: { xs: 2, sm: 4, md: "42px" },
+        // display: "grid",
+        // gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+        // columnGap: { md: 8 },
+        // rowGap: { xs: 4, md: 0 },
+        // alignItems: "center",
+        // overflow: "hidden", // prevents horizontal scrollbar during the slide
       }}
     >
-      {/* LEFT: image slides in from the left */}
+      <MainContainer style={{py:7}}>
+         {/* LEFT: image slides in from the left */}
+         <Grid container spacing={6} >
+          <Grid size={{ xs: 12, md: 6 }}>
+           
       <MotionBox
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -76,8 +82,10 @@ const DailyEmployeeMeals = () => {
           }}
         />
       </MotionBox>
+       </Grid>
 
       {/* RIGHT: content slides in from the right */}
+      <Grid size={{ xs: 12, md: 6 }}>
       <MotionBox
         initial={{ x: 100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -87,7 +95,7 @@ const DailyEmployeeMeals = () => {
         <SectionIntro
           id={4}
           headingSize={{ xs: "28px", md: "35px" }}
-          paraSize={{ xs: "13px" }}
+          paraSize={{ xs: "13px",lg:"14px" }}
         />
 
         <Box sx={{ mt: 3.5, borderTop: `1px solid ${LINE}` }}>
@@ -123,7 +131,7 @@ const DailyEmployeeMeals = () => {
                   pl: 3,
                   mt: 0.5,
                   color: "#5d564f",
-                  fontSize: "12px",
+                  fontSize: {xs: "12px", lg: "13px"},
                   lineHeight: 1.7,
                 }}
               >
@@ -132,7 +140,13 @@ const DailyEmployeeMeals = () => {
             </Box>
           ))}
         </Box>
+       
       </MotionBox>
+      </Grid>
+       </Grid>
+
+      </MainContainer>
+     
     </Box>
   );
 };

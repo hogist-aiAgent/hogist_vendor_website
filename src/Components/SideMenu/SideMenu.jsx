@@ -2,18 +2,26 @@ import { useState } from "react";
 import { Box, Typography, IconButton, Drawer } from "@mui/material";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import CloseIcon from "@mui/icons-material/Close";
-import Header from "../Header/header";
 import CommonButton from "../../Common/Button/CommonButton";
 
 const RED = "#b62819";
+const DRAWER_CLOSE_DELAY = 300; // let the drawer release the body scroll-lock first
 
 const SideMenu = ({
   Headertopic,
   activeId,
-  setActiveId,
+  onNavigate,
+  onQuote,
   button = "Get a Quote",
 }) => {
   const [open, SetOpen] = useState(false);
+
+  // Close the drawer first, then scroll (a modal drawer blocks page scrolling while open)
+  const closeThen = (action) => {
+    SetOpen(false);
+    setTimeout(action, DRAWER_CLOSE_DELAY);
+  };
+
   return (
     <Box
       sx={{
@@ -26,28 +34,17 @@ const SideMenu = ({
           display: { xs: "flex", md: "none" },
         }}
       >
-        <MenuOutlinedIcon
-          sx={{
-            dispay: { xs: "flex", md: "none" },
-          }}
-        />
+        <MenuOutlinedIcon />
       </IconButton>
       <Drawer anchor="right" open={open} onClose={() => SetOpen(false)}>
         <Box sx={{ width: 200, p: 2 }}>
           <IconButton onClick={() => SetOpen(false)}>
-            <CloseIcon
-              sx={{
-                display: { xs: "flex", md: "none" },
-              }}
-            />
+            <CloseIcon />
           </IconButton>
           {Headertopic.map((item) => (
             <Typography
               key={item.id}
-              onClick={() => {
-                setActiveId(item.id);
-                SetOpen(false);
-              }}
+              onClick={() => closeThen(() => onNavigate(item))}
               sx={{
                 py: 1.5,
                 fontSize: "16px",
@@ -71,7 +68,7 @@ const SideMenu = ({
               px={2}
               py={0}
               borderRadius="12px"
-              onClick={() => SetOpen(false)}
+              onClick={() => closeThen(onQuote)}
             >
               {button}
             </CommonButton>

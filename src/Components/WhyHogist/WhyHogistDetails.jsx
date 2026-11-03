@@ -51,7 +51,7 @@ const WhyHogistDetails = () => (
       >
         <Typography
           sx={{
-            fontSize: "15px",
+            fontSize: { xs: "15px", lg: "17px" },
             fontWeight: 700,
             lineHeight: 1.3,
             color: "rgb(17, 17, 17)",
@@ -62,7 +62,7 @@ const WhyHogistDetails = () => (
         </Typography>
         <Typography
           sx={{
-            fontSize: "12px",
+            fontSize: { xs: "12px", lg: "13px" },
             fontWeight: 400,
             lineHeight: 1.7,
             color: "rgb(87, 80, 73)",

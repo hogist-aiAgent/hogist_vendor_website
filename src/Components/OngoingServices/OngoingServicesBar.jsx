@@ -20,13 +20,13 @@ const OngoingServicesBar = () => {
       }}
     >
       <Box>
-        <Typography sx={{ fontSize: "15px", fontWeight: 700, color: "#fff", lineHeight: 1.25 }}>
+        <Typography sx={{ fontSize: { xs: "15px", lg: "17px" }, fontWeight: 700, color: "#fff", lineHeight: 1.25 }}>
           Regular operational support
         </Typography>
         <Typography
           sx={{
             mt: 1.25,
-            fontSize: "12px",
+            fontSize: { xs: "12px", lg: "13px" },
             lineHeight: 1.7,
             color: "#ffd9d6",
             maxWidth: 500,
@@ -43,6 +43,8 @@ const OngoingServicesBar = () => {
               size="medium"
               bgcolor="#fff"
               color={RED}
+              fontSize={{xs:"15px",lg:"17px"}}
+              fontWeight={600}
              
             >
               Talk to a team

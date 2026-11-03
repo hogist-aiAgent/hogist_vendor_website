@@ -25,7 +25,7 @@ const WhyHogistBox = () => {
     >
       <Typography
         sx={{
-          fontSize: "10px",
+          fontSize: { xs: "10px", lg: "12px" },
           fontWeight: 700,
           letterSpacing: "0.04em",
           color: "#c60800",
@@ -36,7 +36,7 @@ const WhyHogistBox = () => {
       <Typography
         sx={{
           mt: 1,
-          fontSize: "12px",
+          fontSize: { xs: "12px", lg: "13px" },
           fontWeight: 400,
           lineHeight: 1.7,
           color: "#575049",
